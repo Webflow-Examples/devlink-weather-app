@@ -1,0 +1,14 @@
+.text-field {
+  width: 100%;
+  min-width: 100%;
+  margin-bottom: 0px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: hsla(231.06382978723403, 19.03%, 48.43%, 1.00);
+  border-radius: 8px;
+
+  background-color: hsla(0, 0.00%, 100.00%, 0.00);
+
+  color: hsla(231.06382978723403, 0.00%, 100.00%, 1.00);
+}

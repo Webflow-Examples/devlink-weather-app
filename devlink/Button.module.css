@@ -1,0 +1,6 @@
+.submit-button {
+  max-height: none;
+  flex: 0 auto;
+  border-radius: 8px;
+  background-color: #646b93;
+}

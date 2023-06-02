@@ -1,0 +1,37 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.title {
+  position: relative;
+
+  max-width: 170px;
+  margin-right: 24px;
+
+  background-image: linear-gradient(to bottom, hsla(0, 0.00%, 100.00%, 1.00) 13%, hsla(0, 0.00%, 100.00%, 0.20));
+
+  transition: transform 300ms ease,color 300ms ease;
+
+  color: hsla(231.06382978723403, 0.00%, 100.00%, 1.00);
+  font-size: 19px;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grid-06 {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .grid-06 {
+    grid-template-columns: 1fr;
+  }
+}

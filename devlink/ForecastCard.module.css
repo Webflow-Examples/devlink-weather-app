@@ -1,0 +1,100 @@
+.card-forecast {
+  border: 0.5px solid #646b93;
+  border-radius: 8px;
+
+  transform: perspective(2000px);
+  transition: all 100ms ease;
+
+  color: #727ec5;
+
+  cursor: auto;
+}
+
+.card-forecast:hover {
+  background-image: radial-gradient(circle farthest-corner at 50% 140%, #455295, hsla(231.42857142857144, 100.00%, 4.12%, 1.00) 61%);
+  box-shadow: 0 40px 70px -30px hsla(231.06382978723403, 19.03%, 48.43%, 1.00);
+  transform: translate(0px, -2px);
+}
+
+.forecast-day {
+  display: flex;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  justify-content: center;
+
+  border-bottom: 0.5px solid #646b93;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  background-color: #000315;
+}
+
+.image-wrapper {
+  position: relative;
+
+  display: flex;
+  min-height: 90px;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("https://uploads-ssl.webflow.com/63d85500e0557a18cd5a7601/63d85500e0557a24c55a7641_Group%201291.png"), radial-gradient(circle farthest-corner at 50% -190%, #455295 20%, hsla(234, 90.91%, 4.31%, 0.00) 90%);
+  background-position: 50% 50%, 0px 0px;
+  background-size: 70%, auto;
+  background-repeat: no-repeat, repeat;
+
+  transform: translate3d(0px, 0px, 1px);
+  transform-style: preserve-3d;
+}
+
+.image-large {
+  z-index: 110;
+  width: 90px;
+}
+
+.forecast-info {
+  display: flex;
+  padding-right: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  transform: none;
+
+  text-align: center;
+}
+
+.temp {
+  z-index: 60;
+
+  background-image: linear-gradient(to bottom, hsla(0, 0.00%, 100.00%, 1.00), hsla(0, 0.00%, 100.00%, 0.40));
+
+  transition: transform 300ms ease,color 300ms ease;
+
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.flex-horizontal {
+  display: flex;
+  padding: 5px 14px;
+  justify-content: space-between;
+  align-items: center;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
+  text-decoration: none;
+}
+
+#w-node-_95ee82c6-38e8-5b6a-1c90-af0bc260ab95-c260ab95 {
+  grid-column-start: span 1;
+  grid-column-end: span 1;
+  grid-row-start: span 1;
+  grid-row-end: span 1;
+}

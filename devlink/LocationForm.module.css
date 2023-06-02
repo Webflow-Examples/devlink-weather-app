@@ -1,0 +1,22 @@
+.form-block {
+  margin-bottom: 0px;
+}
+
+.form {
+  display: block;
+  margin-top: 0px;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.success-message {
+  background-color: hsla(0, 0.00%, 100.00%, 0.00);
+}
+
+.error-message {
+  border-radius: 8px;
+}
+
+.text-block {
+  color: hsla(0, 100.00%, 50.22%, 1.00);
+}
