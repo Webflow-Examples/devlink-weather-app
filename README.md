@@ -12,7 +12,9 @@ In order to use this project, you'll need to clone this Webflow project into you
 
 In the Designer open the Components menu and click on the "Export components" button to access the DevLink config. Then configure your `.webflowrc.js` based off the config values.
 
-<img width="650" alt="ed0f6c7-export_components" src="https://user-images.githubusercontent.com/5628190/235150237-9b2d0bb8-22bb-4528-b9b6-f4dd81fbe9dd.png"> <img width="600" alt="devlink config" src="https://user-images.githubusercontent.com/5628190/235150248-9bf96528-35f4-44da-95fe-39f0db0eaa19.png">
+<img width="1124" alt="Screenshot 2023-06-02 at 16 33 04" src="https://github.com/Webflow-Examples/devlink-weather-app/assets/5628190/4382c840-f6d7-4a39-9dc4-49e80ba6e26c">
+<img width="1288" alt="Screenshot 2023-05-31 at 21 53 27" src="https://github.com/Webflow-Examples/devlink-weather-app/assets/5628190/570047fc-0529-4e21-8095-9c45e54e646c">
+
 
 Replace the API Token with your site's API key (which you can generate in site settings Integrations tab).
 
