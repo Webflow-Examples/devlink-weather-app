@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(0, 3, 21);
+  background-image: radial-gradient(
+    circle at 50% -110%,
+    rgb(69, 82, 149) 23%,
+    rgb(0, 3, 21) 65%
+  );
+  color: rgb(100, 107, 147);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
