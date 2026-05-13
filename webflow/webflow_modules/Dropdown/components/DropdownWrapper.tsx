@@ -4,6 +4,7 @@ import { useIXEvent } from "../../interactions";
 import { cj, useClickOut, KEY_CODES } from "../../utils";
 import { NavbarContext } from "../../Navbar/helpers/navbarContext";
 import { DropdownContext } from "../helpers/dropdownContext";
+import { Props } from "../../types";
 
 function getLinksList(root: HTMLElement) {
   return root.querySelectorAll<HTMLAnchorElement>(
@@ -11,10 +12,12 @@ function getLinksList(root: HTMLElement) {
   );
 }
 
-type DropdownProps = React.PropsWithChildren<{
-  tag?: keyof HTMLElementTagNameMap;
-  className?: string;
-}>;
+type DropdownProps = Props<
+  "div",
+  {
+    tag?: keyof HTMLElementTagNameMap;
+  }
+>;
 
 type DropdownWrapperProps = DropdownProps & {
   delay: number;
@@ -31,6 +34,7 @@ const INITIAL_DROPDOWN_STATE = {
 function Dropdown({
   tag = "div",
   className = "",
+  children,
   ...props
 }: Omit<DropdownWrapperProps, "delay" | "hover">) {
   const { root, setFocusedLink, hover, toggleOpen } =
@@ -87,97 +91,100 @@ function Dropdown({
     }
   };
 
-  return React.createElement(tag, {
-    ...props,
-    ref: root,
-    onKeyDown: handleFocus,
-    onMouseEnter: () => {
-      if (hover) {
-        toggleOpen();
-      }
+  return React.createElement(
+    tag,
+    {
+      ...props,
+      ref: root,
+      onKeyDown: handleFocus,
+      onMouseEnter: () => {
+        if (hover) {
+          toggleOpen();
+        }
+      },
+      onMouseLeave: () => {
+        if (hover) {
+          toggleOpen();
+        }
+      },
+      className: cj(
+        className,
+        "w-dropdown",
+        isNavbarOpen && "w--nav-dropdown-open"
+      ),
     },
-    onMouseLeave: () => {
-      if (hover) {
-        toggleOpen();
-      }
-    },
-    className: cj(
-      className,
-      "w-dropdown",
-      isNavbarOpen && "w--nav-dropdown-open"
-    ),
-  });
+    children
+  );
 }
 
-const DropdownWrapper = React.forwardRef(function DropdownWrapper(
-  { delay, hover, ...props }: DropdownWrapperProps,
-  ref
-) {
-  const root = React.useRef<HTMLElement | null>(null);
-  const [{ isOpen }, setIsOpen] = React.useState(INITIAL_DROPDOWN_STATE);
-  const [focusedLink, setFocusedLink] = React.useState<number>(-1);
-  const closeTimeoutRef = React.useRef<
-    ReturnType<typeof setTimeout> | undefined
-  >(undefined);
+const DropdownWrapper = React.forwardRef<HTMLElement, DropdownWrapperProps>(
+  function DropdownWrapper({ delay, hover, ...props }, ref) {
+    const root = React.useRef<HTMLElement | null>(null);
+    const [{ isOpen }, setIsOpen] = React.useState(INITIAL_DROPDOWN_STATE);
+    const [focusedLink, setFocusedLink] = React.useState<number>(-1);
+    const closeTimeoutRef = React.useRef<
+      ReturnType<typeof setTimeout> | undefined
+    >(undefined);
 
-  React.useImperativeHandle(ref, () => root.current);
+    React.useImperativeHandle(ref, () => root.current as HTMLElement);
 
-  React.useEffect(() => {
-    return () => {
+    React.useEffect(() => {
+      return () => {
+        clearTimeout(closeTimeoutRef.current);
+      };
+    }, []);
+
+    const toggleOpen = React.useCallback(() => {
       clearTimeout(closeTimeoutRef.current);
-    };
-  }, []);
-
-  const toggleOpen = React.useCallback(() => {
-    clearTimeout(closeTimeoutRef.current);
-    setFocusedLink(-1);
-    setIsOpen(({ openingCount, ...rest }) => ({
-      ...rest,
-      openingCount: openingCount + 1,
-    }));
-    if (delay > 0 && isOpen) {
-      closeTimeoutRef.current = setTimeout(() => {
+      setFocusedLink(-1);
+      setIsOpen(({ openingCount, ...rest }) => ({
+        ...rest,
+        openingCount: openingCount + 1,
+      }));
+      if (delay > 0 && isOpen) {
+        closeTimeoutRef.current = setTimeout(() => {
+          setIsOpen(({ openingCount }) => ({
+            openingCount,
+            isOpen: openingCount % 2 === 1,
+          }));
+        }, delay);
+      } else {
         setIsOpen(({ openingCount }) => ({
           openingCount,
           isOpen: openingCount % 2 === 1,
         }));
-      }, delay);
-    } else {
-      setIsOpen(({ openingCount }) => ({
-        openingCount,
-        isOpen: openingCount % 2 === 1,
-      }));
-    }
-  }, [hover, isOpen, delay]);
+      }
+    }, [hover, isOpen, delay]);
 
-  const closeDropdown = React.useCallback(
-    () => setIsOpen(INITIAL_DROPDOWN_STATE),
-    [setIsOpen]
-  );
+    const closeDropdown = React.useCallback(
+      () => setIsOpen(INITIAL_DROPDOWN_STATE),
+      [setIsOpen]
+    );
 
-  useClickOut(root, closeDropdown);
-  useIXEvent(root.current, isOpen);
+    useClickOut(root, closeDropdown);
+    useIXEvent(root.current, isOpen);
 
-  React.useEffect(() => {
-    if (root.current) {
-      const links = getLinksList(root.current);
-      links[focusedLink ?? 0]?.focus();
-    }
-  }, [focusedLink]);
+    React.useEffect(() => {
+      if (root.current) {
+        const links = getLinksList(root.current);
+        links[focusedLink ?? 0]?.focus();
+      }
+    }, [focusedLink]);
 
-  return (
-    <DropdownContext.Provider
-      value={{
-        root,
-        isOpen,
-        toggleOpen,
-        setFocusedLink,
-        hover,
-      }}
-    >
-      <Dropdown {...props} />
-    </DropdownContext.Provider>
-  );
-});
+    return (
+      <DropdownContext.Provider
+        value={{
+          root,
+          isOpen,
+          toggleOpen,
+          setFocusedLink,
+          hover,
+        }}
+      >
+        <Dropdown {...props} />
+      </DropdownContext.Provider>
+    );
+  }
+);
 
 export default DropdownWrapper;

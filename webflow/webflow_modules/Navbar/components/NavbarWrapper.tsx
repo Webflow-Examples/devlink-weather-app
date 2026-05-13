@@ -16,6 +16,7 @@ import {
   BREAKPOINTS,
 } from "../helpers/navbarContext";
 import NavbarMenu from "./NavbarMenu";
+import { Props } from "../../types";
 
 function getLinksList(root: HTMLElement) {
   return root.querySelectorAll<HTMLAnchorElement>(".w-nav-menu .w-nav-link");
@@ -34,12 +35,13 @@ function getAnimationKeyframes({
   return [{ transform: `${t}(${start}px)` }, { transform: `${t}(${end}px)` }];
 }
 
-type NavbarProps = {
-  tag: React.ElementType;
-  config: NavbarConfig;
-  className?: string;
-  children?: React.ReactNode;
-};
+type NavbarProps = Props<
+  "div",
+  {
+    tag: React.ElementType;
+    config: NavbarConfig;
+  }
+>;
 
 export type { NavbarProps };
 
@@ -170,9 +172,9 @@ function Navbar({
 }
 
 const NavbarWrapper = React.forwardRef<HTMLElement, NavbarProps>(
-  function NavbarWrapper(props, ref) {
+  function NavbarWrapper({ config, tag, ...props }, ref) {
     const { animation, docHeight, easing, easing2, duration, noScroll } =
-      props.config;
+      config;
     const root = React.useRef<HTMLElement | null>(null);
     const menu = React.useRef<HTMLElement | null>(null);
     const animOver = /^over/.test(animation);
@@ -216,7 +218,9 @@ const NavbarWrapper = React.forwardRef<HTMLElement, NavbarProps>(
             })
           : getAnimationKeyframes({ start: 0, end: -getOffsetHeight() });
         const anim = menu.current.animate(keyframes, {
-          easing: EASING_FUNCTIONS[easing2] ?? "ease",
+          easing:
+            EASING_FUNCTIONS[easing2 as keyof typeof EASING_FUNCTIONS] ??
+            "ease",
           duration,
           fill: "forwards",
         });
@@ -238,7 +242,8 @@ const NavbarWrapper = React.forwardRef<HTMLElement, NavbarProps>(
             })
           : getAnimationKeyframes({ start: -getOffsetHeight(), end: 0 });
         menu.current.animate(keyframes, {
-          easing: EASING_FUNCTIONS[easing] ?? "ease",
+          easing:
+            EASING_FUNCTIONS[easing as keyof typeof EASING_FUNCTIONS] ?? "ease",
           duration,
           fill: "forwards",
         });
@@ -280,7 +285,7 @@ const NavbarWrapper = React.forwardRef<HTMLElement, NavbarProps>(
     return (
       <NavbarContext.Provider
         value={{
-          ...props.config,
+          ...config,
           root,
           menu,
           animOver,
@@ -293,7 +298,7 @@ const NavbarWrapper = React.forwardRef<HTMLElement, NavbarProps>(
           setFocusedLink,
         }}
       >
-        <Navbar {...props} />
+        <Navbar config={config} tag={tag} {...props} />
       </NavbarContext.Provider>
     );
   }

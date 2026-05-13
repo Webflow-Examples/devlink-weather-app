@@ -1,0 +1,32 @@
+---
+import { DevLinkProvider } from '../../webflow/DevLinkProvider.js';
+import "../../webflow/css/global.css"; // Webflow Styles
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+		<title>Webflow Cloud - Astro Starter</title>
+	</head>
+	<body>
+		<DevLinkProvider client:load>
+			<slot />
+		</DevLinkProvider>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

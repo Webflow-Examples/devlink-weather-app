@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Import DevLink components from "../../webflow/*"
+// import { ComponentName } from "../../webflow/ComponentName";
+---
+
+<Layout>
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Welcome to Webflow Cloud</h1>
+        <p class="hero-description">Your Astro project is ready. Start building and sync your Webflow components and design system.</p>
+        <div class="hero-cta">
+          <a
+            href="https://developers.webflow.com/data-clients/docs/getting-started"
+            class="button-primary"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-cta {
+    margin-top: 0.75rem;
+  }
+
+  .button-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    background: #146ef5;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.25), inset 0px 29px 23px -16px rgba(255, 255, 255, 0.04), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.2);
+  }
+
+  .button-primary:hover {
+    background: #2c80fd;
+    color: #ffffff;
+  }
+</style>

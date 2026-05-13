@@ -1,0 +1,26 @@
+{
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler dev",
+    "deploy": "webflow cloud deploy",
+    "astro": "astro",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.6",
+    "@astrojs/react": "^4.2.5",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "astro": "^5.17.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250415.0",
+    "wrangler": "^4.11.1"
+  }
+}

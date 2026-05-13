@@ -4,7 +4,11 @@ import { Inter } from "next/font/google";
 import "@/webflow/css/global.css";
 
 import "./globals.css";
-import { AppShell } from "./AppShell";
+import { DevLinkFontTags } from "@/webflow/webflow_modules/DevLinkFontTags";
+import { DevLinkProvider } from "@/webflow/DevLinkProvider";
+import { Layout } from "@/webflow/Layout";
+import { SideNav } from "@/webflow/SideNav";
+import { TopNav } from "@/webflow/TopNav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,8 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <DevLinkFontTags/>
+      </head>
       <body className={inter.className}>
-        <AppShell>{children}</AppShell>
+        <DevLinkProvider>
+          <Layout
+            sidebar={<SideNav />}
+            topnav={<TopNav />}
+            main={children}
+          />
+        </DevLinkProvider>
       </body>
     </html>
   );

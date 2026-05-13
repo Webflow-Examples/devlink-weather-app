@@ -2,11 +2,14 @@
 import * as React from "react";
 import { cj, KEY_CODES } from "../../utils";
 import { NavbarContext } from "../helpers/navbarContext";
+import { Props } from "../../types";
 
-type NavbarButtonProps = React.PropsWithChildren<{
-  tag?: React.ElementType;
-  className?: string;
-}>;
+type NavbarButtonProps = Props<
+  "div",
+  {
+    tag?: React.ElementType;
+  }
+>;
 
 export type { NavbarButtonProps };
 

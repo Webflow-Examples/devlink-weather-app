@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
+import { Props } from "../../types";
 
-type BlockProps = React.PropsWithChildren<{ tag?: React.ElementType }> &
-  React.HTMLAttributes<HTMLOrSVGElement>;
+type BlockProps = Props<"div", { tag?: React.ElementType }>;
 
 const Block = React.forwardRef<HTMLElement, BlockProps>(function Block(
   { tag = "div", ...props },

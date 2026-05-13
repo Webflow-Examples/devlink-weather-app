@@ -110,7 +110,7 @@ export const EASING_FUNCTIONS = {
   "ease-in-back": "cubic-bezier(0.36, 0, 0.66, -0.56)",
   "ease-out-back": "cubic-bezier(0.34, 1.56, 0.64, 1)",
   "ease-in-out-back": "cubic-bezier(0.68, -0.6, 0.32, 1.6)",
-};
+} as const;
 
 export const isServer = typeof window === "undefined";
 

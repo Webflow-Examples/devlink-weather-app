@@ -3,18 +3,17 @@ import React from "react";
 import { onKeyDownInputHandlers } from "../helpers/formUtils";
 import { FormInputProps } from "./FormTextInput";
 
-const FormButton = React.forwardRef(function FormButton(
-  { className = "", value, ...props }: FormInputProps,
-  ref
-) {
-  return React.createElement("input", {
-    ...props,
-    ref,
-    type: "submit",
-    value: value ?? "",
-    className: className + " w-button",
-    onKeyDown: onKeyDownInputHandlers,
-  });
-});
+const FormButton = React.forwardRef<HTMLInputElement, FormInputProps>(
+  function FormButton({ className = "", value, ...props }, ref) {
+    return React.createElement("input", {
+      ...props,
+      ref,
+      type: "submit",
+      value: value ?? "",
+      className: className + " w-button",
+      onKeyDown: onKeyDownInputHandlers,
+    });
+  }
+);
 
 export default FormButton;

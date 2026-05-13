@@ -14,7 +14,7 @@ export type ElementProps<T extends keyof HTMLElementTagNameMap> =
   React.HTMLAttributes<HTMLElementTagNameMap[T]>;
 
 /**
- * Props type that combines element props with additional custom props
+ * Props type that combines element props with additional custom props.
  */
 export type Props<
   T extends keyof HTMLElementTagNameMap,
