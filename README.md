@@ -12,7 +12,7 @@ In order to use this project, you'll need to clone this Webflow project into you
 
 ### Set up your local environment
 
-Install Webflow CLI (global install is optional; you can also run the CLI via `npx` in the export step below).
+Install Webflow CLI (global install is optional; you can also run the CLI without `npx` in the export step below).
 
 ```bash
 npm install -g @webflow/webflow-cli
@@ -21,7 +21,7 @@ npm install -g @webflow/webflow-cli
 Log in to Webflow and select your desired workspace from the opened browser window. You can append `--force` to reset any existing authentication.
 
 ```bash
-npx @webflow/webflow-cli auth login
+npx webflow auth login
 ```
 
 Then, install the needed dependencies.
@@ -33,7 +33,7 @@ npm install
 Sync all the Webflow components into your local filesystem. Answer the prompts to generate and configure your `webflow.json`.
 
 ```bash
-npx @webflow/webflow-cli devlink export
+npx webflow devlink export
 ```
 
 Select the cloned "DevLink: Weather" site from the sites listed.
