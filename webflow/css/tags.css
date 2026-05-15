@@ -1,0 +1,25 @@
+@scope (.wf-devlink-cf6d3e98f3137e2ce156fa37ca2f20ce) {
+  body {
+    background-color: #000315;
+    background-image: radial-gradient(
+      circle farthest-corner at 50% -110%,
+      #455295 23%,
+      #000315 65%
+    );
+    font-family: Inter, sans-serif;
+    color: #646b93;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 38px;
+    line-height: 44px;
+    font-weight: 400;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
