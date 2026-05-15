@@ -12,6 +12,9 @@ In order to use this project, you'll need to clone this Webflow project into you
 
 ### Set up your local environment
 
+> [!NOTE]
+> To **preview the app locally**, run `npm install` and `npm run dev`. You do **not** need the Webflow CLI unless you you make changes to the DevLink components from the cloned Webflow site. If you do make changes, follow the steps below to update the components in the `webflow/` directory.
+
 Install Webflow CLI (global install is optional; you can also run the CLI without `npx` in the export step below).
 
 ```bash
